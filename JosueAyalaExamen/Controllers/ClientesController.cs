@@ -17,7 +17,7 @@ namespace JosueAyalaExamen.Controllers
         public ClientesController(JosueAyalaExamenContextSQLServer context)
         {
             _context = context;
-        }       
+        }
 
         // GET: Clientes
         public async Task<IActionResult> Index()
@@ -49,9 +49,12 @@ namespace JosueAyalaExamen.Controllers
             return View();
         }
 
+        // POST: Clientes/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ClienteId,Nombre,Edad,Saldo,Miembro,FechaRegistro")] Cliente cliente)
+        public async Task<IActionResult> Create([Bind("ClienteId,Nombre,Edad,Saldo,Miembro,FechaRegistro,ReservaId")] Cliente cliente)
         {
             if (ModelState.IsValid)
             {
@@ -83,7 +86,7 @@ namespace JosueAyalaExamen.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ClienteId,Nombre,Edad,Saldo,Miembro,FechaRegistro")] Cliente cliente)
+        public async Task<IActionResult> Edit(int id, [Bind("ClienteId,Nombre,Edad,Saldo,Miembro,FechaRegistro,ReservaId")] Cliente cliente)
         {
             if (id != cliente.ClienteId)
             {

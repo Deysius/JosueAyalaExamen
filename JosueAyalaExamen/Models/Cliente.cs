@@ -9,7 +9,7 @@ namespace JosueAyalaExamen.Models
         public int ClienteId { get; set; }
 
         [Required]
-        [MaxLength(50)]      
+        [MaxLength(50)]
         public string Nombre { get; set; }
 
         [Required]
@@ -25,5 +25,14 @@ namespace JosueAyalaExamen.Models
 
         [DataType(DataType.Date)]
         public DateTime FechaRegistro { get; set; }
+        public ICollection<Reserva> Reservas { get; set; } = new List<Reserva>();
+
+        [Display(Name = "Plan de recompensas")]
+        public int ReservaId { get; set; }
+
+        [ForeignKey("PlanDeRecompensasId")]
+        public Recompensa? Recompensa { get; set; }
     }
 }
+
+

@@ -18,6 +18,7 @@ namespace JosueAyalaExamen.Models
         [Required]
         public decimal ValorPagar { get; set; }
         public int ClienteId { get; set; }
-        public Cliente Cliente { get; set; }
+        [ForeignKey("ClienteId")]
+        public Cliente? Cliente { get; set; }
     }
 }

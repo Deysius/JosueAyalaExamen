@@ -4,6 +4,7 @@ using JosueAyalaExamen.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JosueAyalaExamen.Migrations
 {
     [DbContext(typeof(JosueAyalaExamenContextSQLServer))]
-    partial class JosueAyalaExamenContextSQLServerModelSnapshot : ModelSnapshot
+    [Migration("20250428184923_Inicio")]
+    partial class Inicio
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,10 +47,15 @@ namespace JosueAyalaExamen.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<int>("RecompensaId")
+                        .HasColumnType("int");
+
                     b.Property<decimal>("Saldo")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("ClienteId");
+
+                    b.HasIndex("RecompensaId");
 
                     b.ToTable("Cliente");
                 });
@@ -100,6 +108,17 @@ namespace JosueAyalaExamen.Migrations
                     b.HasIndex("ClienteId");
 
                     b.ToTable("Reserva");
+                });
+
+            modelBuilder.Entity("JosueAyalaExamen.Models.Cliente", b =>
+                {
+                    b.HasOne("JosueAyalaExamen.Models.Recompensa", "Recompensa")
+                        .WithMany()
+                        .HasForeignKey("RecompensaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Recompensa");
                 });
 
             modelBuilder.Entity("JosueAyalaExamen.Models.Reserva", b =>

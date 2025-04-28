@@ -9,9 +9,10 @@ namespace JosueAyalaExamen.Models
         public int ClienteId { get; set; }
 
         [Required]
-        [StringLength(50)]
+        [MaxLength(50)]      
         public string Nombre { get; set; }
 
+        [Required]
         [Range(18, 100)]
         public int Edad { get; set; }
 
@@ -24,6 +25,5 @@ namespace JosueAyalaExamen.Models
 
         [DataType(DataType.Date)]
         public DateTime FechaRegistro { get; set; }
-        public Recompensa Recompensa { get; set; }
     }
 }

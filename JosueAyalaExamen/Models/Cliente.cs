@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace JosueAyalaExamen.Models
 {
@@ -14,6 +15,7 @@ namespace JosueAyalaExamen.Models
         [Range(18, 100)]
         public int Edad { get; set; }
 
+        [Column(TypeName = "decimal(18,2)")]
         [DataType(DataType.Currency)]
         public decimal Saldo { get; set; }
 
@@ -22,6 +24,6 @@ namespace JosueAyalaExamen.Models
 
         [DataType(DataType.Date)]
         public DateTime FechaRegistro { get; set; }
-
+        public Recompensa Recompensa { get; set; }
     }
 }
